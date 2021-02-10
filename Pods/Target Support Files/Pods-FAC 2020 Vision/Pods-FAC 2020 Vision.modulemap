@@ -1,6 +1,0 @@
-framework module Pods_FAC_2020_Vision {
-  umbrella header "Pods-FAC 2020 Vision-umbrella.h"
-
-  export *
-  module * { export * }
-}
