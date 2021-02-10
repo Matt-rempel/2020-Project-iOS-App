@@ -196,3 +196,5 @@ iOSInjectionProject/
 
 *.entitlements
 **/GoogleService-Info.plist
+/FAC 2020 VisionTests
+/FAC 2020 VisionUITests
