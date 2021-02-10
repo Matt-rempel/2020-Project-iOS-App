@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>2020 Project WidgetExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>FAC 2020 Vision.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>34CC7CF724EF0DD800CFC711</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>34EE14E02378A1E900B54092</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>34EE14F62378A1ED00B54092</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>34EE15012378A1ED00B54092</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,52 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
+        "state": {
+          "branch": null,
+          "revision": "9e0328127dfb801cefe8ac53a13c0c90a7770448",
+          "version": "5.4.0"
+        }
+      },
+      {
+        "package": "BLTNBoard",
+        "repositoryURL": "https://github.com/alexaubry/BulletinBoard.git",
+        "state": {
+          "branch": null,
+          "revision": "e8ba81d25e41e5d24d6a4f404ed28443d728723b",
+          "version": "5.0.0"
+        }
+      },
+      {
+        "package": "Facebook",
+        "repositoryURL": "https://github.com/facebook/facebook-ios-sdk",
+        "state": {
+          "branch": null,
+          "revision": "fa5fab33bb440eed75122459965b82c7b944d9d8",
+          "version": "8.2.0"
+        }
+      },
+      {
+        "package": "SwiftyJSON",
+        "repositoryURL": "https://github.com/SwiftyJSON/SwiftyJSON.git",
+        "state": {
+          "branch": null,
+          "revision": "2b6054efa051565954e1d2b9da831680026cd768",
+          "version": "5.0.0"
+        }
+      },
+      {
+        "package": "URLImage",
+        "repositoryURL": "https://github.com/dmytro-anokhin/url-image.git",
+        "state": {
+          "branch": null,
+          "revision": "22eca5ee4f317e0283da75426849ee23f0516022",
+          "version": "0.9.19"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
