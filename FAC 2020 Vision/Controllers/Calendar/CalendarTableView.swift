@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 
 class CalendarTableView: UITableViewController {
-    var years:[String] = []
-    var months:[String : [String]] = DateFormater().getMonthsSoFar()
+    var years: [String] = []
+    var months: [String: [String]] = DateFormater().getMonthsSoFar()
     
     var selectedMonth:String?
-    var selectedYear:String?
-    var selectedDevotion:Devotion?
+    var selectedYear: String?
+    var selectedDevotion: Devotion?
     
     // IBOutlets
     @IBOutlet weak var sortButton: UIBarButtonItem!
@@ -29,7 +29,6 @@ class CalendarTableView: UITableViewController {
         // Navigation Controller
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
-    
     
     // MARK: UITableView
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -67,7 +66,6 @@ class CalendarTableView: UITableViewController {
         return years[section]
     }
     
-    
     // MARK: - IBActions
     @IBAction func sortPressed(_ sender: Any) {
         self.years = self.years.reversed()
@@ -78,14 +76,14 @@ class CalendarTableView: UITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
-    
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "month") {
-            
-            let vc = segue.destination as! CalendarDetailTableView
-            vc.viewYear = selectedYear
-            vc.viewMonth = selectedMonth
+        if segue.identifier == "month" {
+    
+            if let calVC = segue.destination as? CalendarDetailTableView {
+                calVC.viewYear = selectedYear
+                calVC.viewMonth = selectedMonth
+            }
             
         }
     }

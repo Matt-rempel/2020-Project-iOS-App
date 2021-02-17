@@ -24,7 +24,7 @@ struct User {
 //        self.email = email
 //    }
     
-    internal init(json:JSON)  {
+    internal init(json: JSON) {
         dateJoined = DateFormater().getDateFromStringLong(json["date_joined"].string)
         email = json["email"].string
         firstName = json["first_name"].string
@@ -34,4 +34,3 @@ struct User {
         username = json["username"].string
     }
 }
-

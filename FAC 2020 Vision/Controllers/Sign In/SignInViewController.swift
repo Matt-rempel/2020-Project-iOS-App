@@ -40,7 +40,6 @@ class SignInViewController: UIViewController, ASAuthorizationControllerDelegate,
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
         
-        
         // Facebook Sign In
         listenForFacebookSignIn()
         
@@ -52,11 +51,11 @@ class SignInViewController: UIViewController, ASAuthorizationControllerDelegate,
         
     }
 
-//    MARK: IBActions
+    // MARK: IBActions
     @IBAction func signInWithGooglePressed(_ sender: Any) {
         GIDSignIn.sharedInstance().signIn()
     }
-    
+
     @IBAction func signInWithApplePressed(_ sender: Any) {
         handleAppleIdRequest()
     }
@@ -77,8 +76,6 @@ class SignInViewController: UIViewController, ASAuthorizationControllerDelegate,
                 print("User cancelled login")
                 return
             }
-
-            
         }
     }
     
@@ -88,7 +85,7 @@ class SignInViewController: UIViewController, ASAuthorizationControllerDelegate,
     
     // MARK: Facebook
     func listenForFacebookSignIn() {
-        NotificationCenter.default.addObserver(forName: .AccessTokenDidChange, object: nil, queue: OperationQueue.main) { (notification) in
+        NotificationCenter.default.addObserver(forName: .AccessTokenDidChange, object: nil, queue: OperationQueue.main) { (_) in
             if let accessToken = AccessToken.current?.tokenString {
                 // Send token to back end
                 self.performSignIn(accessToken: accessToken, provider: .google)
@@ -139,8 +136,7 @@ class SignInViewController: UIViewController, ASAuthorizationControllerDelegate,
         // Handle error.
         self.showAlert(withTitle: "Error Signing In", message: "Could not complete sign in, please try again later")
     }
-    
-    
+
     // MARK: - Google
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
               withError error: Error!) {
@@ -180,15 +176,14 @@ class SignInViewController: UIViewController, ASAuthorizationControllerDelegate,
                 } else {
                     self.showAlert(withTitle: "Sign in Error", message: "Please try again later")
                 }
-                
+
                 return
             }
 
             self.transferDeviceDataToAccount()
-            
         })
     }
-    
+
     // MARK: Transfer Device Data
     func transferDeviceDataToAccount() {
         let (bookmarks, scripture) = authManager.getCurrentDeviceProgress()
@@ -202,12 +197,10 @@ class SignInViewController: UIViewController, ASAuthorizationControllerDelegate,
 //            }
 //            self.dismiss(animated: true, completion: nil)
         }
-        
-        
-    }
-    
-    // MARK: - Notifications
 
+    }
+
+    // MARK: - Notifications
     @objc func transferDidComplete() {
         if let accountTV = self.accountTV {
             accountTV.reloadUI()

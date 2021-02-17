@@ -15,7 +15,7 @@ extension UIView {
         // Round the view corners
         self.layer.cornerRadius = 15.0
     }
-	
+
 	func appIconDesign(selected: Bool) {
 		self.layer.cornerRadius = 15.0
 		self.layer.borderWidth = 1
@@ -30,40 +30,36 @@ extension UIButton {
         self.setTitleColor(UIColor.white, for: .normal)
         self.layer.cornerRadius = 8.0
     }
-	
+
     func pillDesign() {
         self.layer.cornerRadius = self.frame.height / 2
     }
-	
+
 	func fadedDesign(with textColor: UIColor? = Colors.tintColor) {
-		
         if #available(iOS 13.0, *) {
             self.backgroundColor = UIColor.secondarySystemBackground
         } else {
             // Fallback on earlier versions
             self.backgroundColor = Colors.fadedColor
         }
-		
+
 		if let imageView = self.imageView {
 			imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
 			imageView.tintColor = textColor
 		}
-		
 		self.setTitleColor(textColor, for: .normal)
         self.layer.cornerRadius = 8.0
     }
-    
+
     func frostedDesign() {
-        var textColor:UIColor! = Colors.fadedColor
-        
+        var textColor: UIColor! = Colors.fadedColor
         if #available(iOS 13.0, *) {
             textColor = UIColor.secondarySystemBackground
         }
-        
+
         self.setTitleColor(textColor, for: .normal)
         self.layer.cornerRadius = 8.0
         self.clipsToBounds = true
-        
 
         if let viewWithTag = self.viewWithTag(100) {
             viewWithTag.removeFromSuperview()
@@ -75,10 +71,10 @@ extension UIButton {
         blur.layer.cornerRadius = 8.0
         blur.layer.masksToBounds = true
         blur.tag = 100
-        
+
         self.insertSubview(blur, at: 0)
     }
-    
+
 }
 
 // MARK: - UIImageView
@@ -86,11 +82,10 @@ extension UIImageView {
 	func roundTopCorners() {
 		self.clipsToBounds = true
 		self.layer.cornerRadius = 15.0
-		let corners:UIRectCorner = [.topRight, .topLeft, .bottomLeft, .bottomRight]
+		let corners: UIRectCorner = [.topRight, .topLeft, .bottomLeft, .bottomRight]
 		self.layer.maskedCorners = CACornerMask(rawValue: corners.rawValue)
 	}
 }
-
 
 // MARK: - UIViewController
 extension UIViewController {
@@ -99,17 +94,17 @@ extension UIViewController {
         tap.cancelsTouchesInView = doesCancelTouchesInView
         view.addGestureRecognizer(tap)
     }
-    
+
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-    func showAlert(withTitle:String?, message: String?) {
+
+    func showAlert(withTitle: String?, message: String?) {
         let alert = UIAlertController(title: withTitle, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    
+
     var getTopbarHeight: CGFloat {
         if #available(iOS 13.0, *) {
             return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
@@ -172,12 +167,12 @@ extension UITableView {
 	@objc func dismissKeyboard() {
 		self.endEditing(true)
     }
-	
+
     func restore() {
         self.backgroundView = nil
         self.separatorStyle = .singleLine
     }
-	
+
 	func setEmptyView(title: String, message: String) {
 		let emptyView = UIView(frame: CGRect(x: self.center.x, y: self.center.y, width: self.bounds.size.width, height: self.bounds.size.height))
 		let titleLabel = UILabel()
@@ -207,17 +202,12 @@ extension UITableView {
 		self.backgroundView = emptyView
 		self.separatorStyle = .none
 	}
-	
-//	func restore() {
-//	self.backgroundView = nil
-//	self.separatorStyle = .singleLine
-//	}
+
 }
 
 // MARK: - Float
 extension CGFloat {
-    func degreesToRadians() -> CGFloat{
+    func degreesToRadians() -> CGFloat {
         return self * CGFloat(Double.pi) / 180
     }
 }
-

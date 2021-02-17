@@ -9,7 +9,7 @@
 import Foundation
 
 enum ScriptureTranslation: String {
-    case kjv = "kjv"
-    case nlt = "nlt"
-    case niv = "niv"
+    case kjv
+    case nlt
+    case niv
 }

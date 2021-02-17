@@ -17,9 +17,9 @@ import AuthenticationServices
  TODO: Maybe use a Singleton pattern for this class? Idk I got some static stuff here so many a singleton will work better
  */
 enum SignInMethod: String {
-    case google = "google"
-    case facebook = "facebook"
-    case apple = "apple"
+    case google
+    case facebook
+    case apple
 }
 
 class AuthenticationManager: DBAccessor {
@@ -29,7 +29,7 @@ class AuthenticationManager: DBAccessor {
 //            let baseURL = "https://www.the2020project.ca/api/v2/"
     //    #endif
         
-    var key:String? {
+    var key: String? {
         get {
             return udManager.getSignInKey()
         }
@@ -40,12 +40,12 @@ class AuthenticationManager: DBAccessor {
     
     static var user: User?
     var udManager = UserDefaultsManager()
-    var icManager = iCloudManager()
+    var icManager = IcloudManager()
     lazy var dateFormater = DateFormater()
     lazy var scriptureManager = ScriptureManager()
     lazy var bookmarkManager = BookmarkManager()
     
-    var signInMethod:SignInMethod? {
+    var signInMethod: SignInMethod? {
         get {
             return udManager.getSignInMethod()
         }
@@ -53,7 +53,6 @@ class AuthenticationManager: DBAccessor {
             udManager.setSignInMethod(signInMethod: value)
         }
     }
-    
     
     // MARK: Auto Sign In
     func autoSignIn() {
@@ -76,7 +75,6 @@ class AuthenticationManager: DBAccessor {
             } else {
                 // Fallback on earlier versions
             }
-            break
         }
     }
     
@@ -91,7 +89,6 @@ class AuthenticationManager: DBAccessor {
         case .some(.facebook):
             let loginManager = LoginManager()
             loginManager.logOut()
-            break
         case .some(.apple):
             break
         }
@@ -103,12 +100,10 @@ class AuthenticationManager: DBAccessor {
     func checkSignInStatus() {
         if let userIdentifier = udManager.getSignInWithAppleUserId() {
             let authorizationProvider = ASAuthorizationAppleIDProvider()
-            authorizationProvider.getCredentialState(forUserID: userIdentifier) { (state, error) in
-                switch (state) {
+            authorizationProvider.getCredentialState(forUserID: userIdentifier) { (state, _) in
+                switch state {
                 case .authorized:
                     print("Account Found - Signed In")
-                    
-                    break
                 case .revoked:
                     print("No Account Found")
                     fallthrough
@@ -135,9 +130,9 @@ class AuthenticationManager: DBAccessor {
     }
     
     // MARK: Transfer Data to Account
-    func transferDeviceDataToAccount(progressView: UIProgressView, completion: @escaping (Error?) throws -> ()) {
-        var totalTasks:Float = 0
-        var completedTasks:Float = 0 {
+    func transferDeviceDataToAccount(progressView: UIProgressView, completion: @escaping (Error?) throws -> Void) {
+        var totalTasks: Float = 0
+        var completedTasks: Float = 0 {
             willSet(value) {
                 progressView.progress = value / totalTasks
             }
@@ -146,14 +141,13 @@ class AuthenticationManager: DBAccessor {
         let (bookmarksTodo, scriptureTodo) = getCurrentDeviceProgress()
         totalTasks = Float(bookmarksTodo + scriptureTodo)
         
-        
         // Transfer scripture progress
         let iCloudCompletion = NSUbiquitousKeyValueStore.default.dictionaryRepresentation
         let keys = Array(iCloudCompletion.keys)
         let taskGroup = DispatchGroup()
         
         for key in keys {
-            let values = iCloudCompletion[key] as? [String : Bool] ?? [:]
+            let values = iCloudCompletion[key] as? [String: Bool] ?? [:]
             print("\(key): \(values)") // 04-01-2019: ["Ruth 2": true, "Proverbs 2:1-4": true]
             // Some how call this method without creating a devotion or scripture... idk might have to rework scManager
             let (year, month, day) = dateFormater.devoDateToParts(devoDate: key)
@@ -172,29 +166,26 @@ class AuthenticationManager: DBAccessor {
             }
         }
         
-        
-       
-        
         // Transfer bookmarks
         // Get UD list of bookmarks
         let udBookmarks = udManager.getSavedBookmarks()
-        var udBookmarksToSend:[String] = []
+        var udBookmarksToSend: [String] = []
         
-        // TODO: This is bad code, it's too complex for what it needs to do[pl[
+        // TODO: This is bad code, it's too complex for what it needs to do
         // Get the API list of bookmarks
         bookmarkManager.getBookmarks { (devotions, error) in
             // Remove from the UD list any that are already in the API list
             
             // Convert the API bookmark dates to the UD format
-            for (_, DevoDates) in udBookmarks {
-                for date in Array(Set(DevoDates)) {
+            for (_, devoDates) in udBookmarks {
+                for date in Array(Set(devoDates)) {
                     udBookmarksToSend.append(date)
                     // date is in the format dd-MM-yyyy
                         for devotion in devotions ?? [] {
                             let udStyleDateString = self.dateFormater.getStringFrom(date: devotion.date)
                             if udStyleDateString == date {
                                 // This UD bookmark already exists in the API bookmarks so remove it from the list
-                                udBookmarksToSend = udBookmarksToSend.filter{$0 != date}
+                                udBookmarksToSend = udBookmarksToSend.filter { $0 != date }
                             }
                         }
                     
@@ -231,8 +222,7 @@ class AuthenticationManager: DBAccessor {
                 
             }
         }
-        
-        
+ 
     }
     
     // MARK: Auth end points
@@ -242,7 +232,7 @@ class AuthenticationManager: DBAccessor {
      - code: The id_token (Apple only)
      - access_token: The auth token
      */
-    func signInWithProvider(idToken: String?, accessToken: String, provider: SignInMethod, completion: @escaping (Error?) throws -> ()) {
+    func signInWithProvider(idToken: String?, accessToken: String, provider: SignInMethod, completion: @escaping (Error?) throws -> Void) {
         let url = "\(baseURL)dj-rest-auth/\(provider.rawValue)/"
         var parameters = ["access_token": accessToken]
         
@@ -275,7 +265,7 @@ class AuthenticationManager: DBAccessor {
                     self.key = key
                     self.signInMethod = provider
                     self.getUserProfile { (error) in
-                        try completion(nil)
+                        try completion(error)
                     }
                    
                 } catch {
@@ -297,13 +287,13 @@ class AuthenticationManager: DBAccessor {
     }
     
     // MARK: Get user profile
-    func getUserProfile(completion: @escaping (Error?) throws -> ()) {
+    func getUserProfile(completion: @escaping (Error?) throws -> Void) {
         guard let key = key else {
             return
         }
         
         let url = "\(baseURL)user/"
-        let headers:HTTPHeaders = ["Authorization": "Token \(key)"]
+        let headers: HTTPHeaders = ["Authorization": "Token \(key)"]
         
         AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             print(response)
@@ -326,19 +316,15 @@ class AuthenticationManager: DBAccessor {
                     }
                 }
             case .failure(let error):
-                break
                 do {
                     try completion(error)
                 } catch {
 
                 }
-                
             }
         }
     }
-   
-   
-    
+
     // Register with email
     
     // Sign in with email
@@ -366,9 +352,9 @@ class AuthenticationManager: DBAccessor {
      - Returns:
      - key: The generated API Key
      */
-    func getReadingHistory(devotion: Devotion?, key: String, completion: @escaping ([String: Bool]?, Error?) throws -> ()) {
+    func getReadingHistory(devotion: Devotion?, key: String, completion: @escaping ([String: Bool]?, Error?) throws -> Void) {
         let url = "\(baseURL)devotionals/2020/12/09/reading-history/"
-        let headers:HTTPHeaders = ["Authorization": "Token \(key)"]
+        let headers: HTTPHeaders = ["Authorization": "Token \(key)"]
 
         AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             print(response)
@@ -382,7 +368,7 @@ class AuthenticationManager: DBAccessor {
                     dump(data)
 //                    let json = try JSON(data: data)
 //                    dump(json)
-                    if let readingProgress = data as? [String : Bool] {
+                    if let readingProgress = data as? [String: Bool] {
                         try completion(readingProgress, nil)
                     } else {
                         try completion(nil, DBAccessError.badData)
@@ -404,7 +390,6 @@ class AuthenticationManager: DBAccessor {
             }
         }
     }
-    
     
     // Set scripture for a devo as read
 }

@@ -12,14 +12,14 @@ import SwiftyJSON
 
 class NotificationManager: DBAccessor {
     
-    //    MARK: Notification
+    // MARK: Notification
     /**
      Get a specific devotion
      - Returns: The notifications
      */
-    func getNotifications(_ completion: @escaping ([APINotification]?, Error?) throws -> ()) {
+    func getNotifications(_ completion: @escaping ([APINotification]?, Error?) throws -> Void) {
         let url = "\(baseURL)notifications/"
-        var notifications:[APINotification] = []
+        var notifications: [APINotification] = []
 
         AF.request(url, method: .get, encoding: JSONEncoding.default).responseJSON { response in
             switch response.result {
@@ -30,7 +30,7 @@ class NotificationManager: DBAccessor {
                         return
                     }
                     let json = try JSON(data: data)
-                    json.forEach { (key, value) in notifications.append(APINotification(json: value)) }
+                    json.forEach { (_, value) in notifications.append(APINotification(json: value)) }
                     try completion(notifications, nil)
                 } catch {
                     do {

@@ -13,12 +13,12 @@ import Alamofire
 class DevotionalDetailView: UITableViewController {
 
 	// Variables
-	let NUM_OF_TABLEVIEW_SECTIONS = 4
+	let numOfTableViewSections = 4
 	
-	var devotion:Devotion!
-	var selectedScripture:Scripture!
+	var devotion: Devotion!
+	var selectedScripture: Scripture!
     // I made it like this so that the UI will always reflect the bool value
-    var viewDevotionIsBookmarked:Bool = false {
+    var viewDevotionIsBookmarked: Bool = false {
         didSet(value) {
             updateBookmarkUI()
         }
@@ -26,7 +26,7 @@ class DevotionalDetailView: UITableViewController {
     
     let dbAccessor = DBAccessor()
     let usDownloader = UnsplashDownloader()
-    let icloudManager = iCloudManager()
+    let icloudManager = IcloudManager()
     let dateFormater = DateFormater()
     let udManager = UserDefaultsManager()
     let scriptureManager = ScriptureManager()
@@ -71,7 +71,6 @@ class DevotionalDetailView: UITableViewController {
 		
 		// Bookmark Button
 		updateBookmarkUI()
-		
 	}
     
     // MARK: API
@@ -86,7 +85,6 @@ class DevotionalDetailView: UITableViewController {
                 self.devotion = devotion
                 self.scriptureManager.getScriptureProgress(devotion: devotion) { (error) in
                     self.tableView.reloadData()
-                    // TODO: Handle error
                     if let error = error {
                         print(error)
                     }
@@ -119,7 +117,7 @@ class DevotionalDetailView: UITableViewController {
 	
     // MARK: - TableView
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return NUM_OF_TABLEVIEW_SECTIONS
+        return numOfTableViewSections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -137,25 +135,15 @@ class DevotionalDetailView: UITableViewController {
 		}
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
 		switch indexPath.section {
 		case 0:
 			let cell = tableView.dequeueReusableCell(withIdentifier: "pictureCell", for: indexPath) as! PictureCell
 			cell.titleLabel.text = devotion.title
-			
-//			if Reachability.isConnectedToNetwork() {
-				cell.activityIndicator.isHidden = false
-				cell.activityIndicator.startAnimating()
-                cell.downloadImage(from: devotion.unsplash_id)
-				
-//			} else {
-//				cell.backgroundImageView.image = #imageLiteral(resourceName: "2020_background.jpg")
-//				cell.activityIndicator.isHidden = true
-//			}
-			
-			
+            cell.activityIndicator.isHidden = false
+            cell.activityIndicator.startAnimating()
+            cell.downloadImage(from: devotion.unsplashId)
 			return cell
 		case 1:
 			let cell = tableView.dequeueReusableCell(withIdentifier: "scriptureCell", for: indexPath) as! ScriptureCell
@@ -163,7 +151,7 @@ class DevotionalDetailView: UITableViewController {
 
 			cell.titleLabel?.text = cellData.title
 			cell.checkmarkImageView.isHidden = !cellData.isCompleted
-			
+
 			return cell
 		case 2:
 			let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageCell
@@ -179,7 +167,7 @@ class DevotionalDetailView: UITableViewController {
 			let attributedString = NSMutableAttributedString(string: formatedText)
 			let paragraphStyle = NSMutableParagraphStyle()
 			paragraphStyle.lineSpacing = 5
-			attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+			attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
 			
 			cell.messageBodyLabel?.attributedText = attributedString
 			cell.authorLabel.text = devotion.author.name
@@ -199,9 +187,6 @@ class DevotionalDetailView: UITableViewController {
 			
 			return cell
 		}
-
-	
-		
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -219,7 +204,7 @@ class DevotionalDetailView: UITableViewController {
 
 	// MARK: - IBOutlets
 	@IBAction func didPressBookmark(_ sender: Any) {
-        bookmarkManager.toggleBookmark(devotion: devotion) { (error) in
+        bookmarkManager.toggleBookmark(devotion: devotion) { (_) in
             self.viewDevotionIsBookmarked.toggle()
             self.updateBookmarkUI()
         }
@@ -230,6 +215,7 @@ class DevotionalDetailView: UITableViewController {
         bookmarkManager.isBookmarked(devotion: devotion) { (isBookmarked, error) in
             self.viewDevotionIsBookmarked = isBookmarked
             if let error = error {
+                print(error)
                 self.showAlert(withTitle: "Error Bookmarking", message: "Could not bookmark devotion, try again later.")
             }
         }
@@ -250,13 +236,10 @@ class DevotionalDetailView: UITableViewController {
             }
 		}
 	}
-	
-   
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		let vc = segue.destination as! ScriptureViewController
-		vc.viewScripture = selectedScripture
+		let scriptureVC = segue.destination as! ScriptureViewController
+        scriptureVC.viewScripture = selectedScripture
     }
-    
-
 }

@@ -21,7 +21,7 @@ class DateFormater {
      */
     func getDateFrom(string: String) -> Date? {
         formatter.dateFormat = "yyyy-MM-dd"
-		return formatter.date(from:string)
+		return formatter.date(from: string)
 	}
     
     /**
@@ -46,7 +46,6 @@ class DateFormater {
 		return formatter.string(from: date)
 	}
 
-	
     /**
      Format: dd-MM-yyyy
      Example: 01-01-2020
@@ -75,7 +74,7 @@ class DateFormater {
      */
 	func getTimeFromString(string: String) -> Date? {
         formatter.dateFormat = "h:mm a"
-		return formatter.date(from:string)
+		return formatter.date(from: string)
 	}
 	
     /**
@@ -153,7 +152,7 @@ class DateFormater {
         formatter.dateFormat = "MMMM"
 		return formatter.string(from: input)
 	}
-    
+
     /**
      Format: MM d, yyyy
      Example: Dec 8, 2020
@@ -162,7 +161,7 @@ class DateFormater {
         formatter.dateStyle = .medium
         return formatter.string(from: input)
     }
-    
+
     /**
      Converts month name to int
      Example: January to 1
@@ -184,8 +183,8 @@ class DateFormater {
      - (year, month, day) Example (2020, 1, 1)
      */
     func devoDateToParts(devoDate: String) -> (Int?, Int?, Int?) {
-        var year:Int?
-        var month:Int?
+        var year: Int?
+        var month: Int?
         var day: Int?
         
         if let date = self.getDateDDMMYYYYFrom(input: devoDate) {
@@ -193,7 +192,7 @@ class DateFormater {
             month = Calendar.current.component(.month, from: date)
             day = Calendar.current.component(.day, from: date)
         }
-        
+
         return (year, month, day)
     }
     
@@ -201,8 +200,7 @@ class DateFormater {
      Gets the months so far since Jan 1, 2020 in a format of [year : [months]]
      */
     func getMonthsSoFar() -> [String: [String]] {
-		
-        var output:[String: [String]] = [:]
+        var output: [String: [String]] = [:]
         let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 		
         let today = Date()
@@ -213,27 +211,26 @@ class DateFormater {
             
             // Loop through previous years adding all 12 months to their arrays
             while year < thisYear {
-                
                 output["\(year)"] = months
                 
                 year += 1
             }
             
             // Loop through months of this year
-            var thisYearsMonths:[String] = []
+            var thisYearsMonths: [String] = []
             var month = Calendar.current.component(.month, from: startDate)
             let thisMonth = Calendar.current.component(.month, from: today)
             while month <= thisMonth {
                 thisYearsMonths.append(months[month-1])
                 month += 1
             }
-            
+
             output["\(year)"] = thisYearsMonths
         }
-		
+
 		return output
 	}
-	
+
     /**
      Will return "Today" or "Yesterday" or a date String depending on what the given date is
      */
@@ -242,7 +239,7 @@ class DateFormater {
 		if let date = date {
 			if current.isDateInToday(date) {
 				return "Today"
-			} else if current.isDateInYesterday(date){
+			} else if current.isDateInYesterday(date) {
 				return "Yesterday"
 			} else {
 				return self.getPrettyStringFrom(date: date)
@@ -251,7 +248,7 @@ class DateFormater {
 			return ""
 		}
 	}
-    
+
     /**
      Will sort and return an array of months in format MMMM (January)
      */

@@ -8,9 +8,8 @@
 
 import Foundation
 
-enum AppIconType:String {
-	case darkBlue = "darkBlue"
-	case lightBlue = "lightBlue"
-	case blackIcon = "blackIcon"
+enum AppIconType: String {
+	case darkBlue
+	case lightBlue
+	case blackIcon
 }
-

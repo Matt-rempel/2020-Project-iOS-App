@@ -9,8 +9,8 @@
 import Foundation
 
 enum ScriptureColor: String {
-    case dark = "dark"
-    case light = "light"
-    case sepia = "sepia"
-    case system = "system"
+    case dark
+    case light
+    case sepia
+    case system
 }

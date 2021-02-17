@@ -11,8 +11,6 @@ import UIKit
 
 class DarkModeManager {
     var isDarkMode: Bool {
-        get {
-            return UIViewController().traitCollection.userInterfaceStyle == .dark
-        }
+        return UIViewController().traitCollection.userInterfaceStyle == .dark
     }
 }

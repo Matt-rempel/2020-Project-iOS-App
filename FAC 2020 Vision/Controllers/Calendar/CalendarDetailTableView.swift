@@ -10,9 +10,9 @@ import UIKit
 
 class CalendarDetailTableView: UITableViewController {
 	
-	var viewYear:String!
-	var viewMonth:String!
-    var devotions:[Devotion] = []
+	var viewYear: String!
+	var viewMonth: String!
+    var devotions: [Devotion] = []
     var isLoadingNext = true {
         willSet(value) {
             setLoading(value)
@@ -28,7 +28,7 @@ class CalendarDetailTableView: UITableViewController {
     let dbAccessor = DBAccessor()
     let usDownloader = UnsplashDownloader()
     let circleProgressPieBuilder = CirclePieBuilder()
-    let icloudManager = iCloudManager()
+    let icloudManager = IcloudManager()
     
     // Navigation bar
     let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
@@ -50,7 +50,6 @@ class CalendarDetailTableView: UITableViewController {
 		self.tableView.rowHeight = UITableView.automaticDimension
 		self.tableView.estimatedRowHeight = 60.0
         
-		
 		if Reachability.isConnectedToNetwork() {
             loadDevotionsFromAPI()
 		} else {
@@ -76,7 +75,6 @@ class CalendarDetailTableView: UITableViewController {
         udManager.toggleOrder()
         loadDevotionsFromAPI()
     }
-    
     
     // MARK: - TableView
 	override func numberOfSections(in tableView: UITableView) -> Int {
@@ -111,7 +109,6 @@ class CalendarDetailTableView: UITableViewController {
         let devotionalDetailView = storyBoard.instantiateViewController(withIdentifier: "DevotionalDetailView") as! DevotionalDetailView
         devotionalDetailView.devotion = selectedDevotional
         
-        
         let navController = UINavigationController()
         navController.viewControllers = [devotionalDetailView]
         
@@ -124,7 +121,7 @@ class CalendarDetailTableView: UITableViewController {
     // MARK: ScrollView
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // If at bottom
-        if (scrollView.contentOffset.y + 200 >= (scrollView.contentSize.height - scrollView.frame.size.height)) {
+        if scrollView.contentOffset.y + 200 >= (scrollView.contentSize.height - scrollView.frame.size.height) {
             loadNext()
         }
         
@@ -137,7 +134,7 @@ class CalendarDetailTableView: UITableViewController {
         } else {
             activityIndicator.stopAnimating()
         }
-        
+
         activityIndicator.isHidden = !isLoading
     }
     
@@ -145,7 +142,7 @@ class CalendarDetailTableView: UITableViewController {
     func loadNext() {
         if !isLoadingNext {
             
-            guard let _ = pagingManager.next else {
+            guard pagingManager.next != nil else {
                 return
             }
             
@@ -168,10 +165,9 @@ class CalendarDetailTableView: UITableViewController {
                     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 }
-                
                 self.isLoadingNext = false
             }
-            
+
         }
     }
     
@@ -189,12 +185,9 @@ class CalendarDetailTableView: UITableViewController {
                     self.showAlert(withTitle: "Could not get devotions", message: "Check your internet connection and try again")
                     print(error)
                 }
-                
                 self.isLoadingNext = false
                 self.tableView.reloadData()
             }
-        } else {
-            // TODO: Handle error
         }
     }
 

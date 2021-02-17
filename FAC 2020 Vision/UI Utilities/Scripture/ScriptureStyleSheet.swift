@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ScriptureStyleSheet  {
+class ScriptureStyleSheet {
     
     let udManager = UserDefaultsManager()
     
@@ -44,38 +44,38 @@ class ScriptureStyleSheet  {
 			return "Extra Extra Large"
 		}
 	}
-	
+
     func getFullColor(color: ScriptureColor) -> String {
-			switch color {
-			case .dark:
-				return "Dark"
-			case .light:
-				return "Light"
-			case .sepia:
-				return "Sepia"
-            case .system:
-                return "System"
-            }
-	}
-	
-    func getFullTranslation(translation: ScriptureTranslation) -> String {
-			switch translation {
-			case .kjv:
-				return "KJV"
-			case .nlt:
-				return "NLT"
-            case .niv:
-                return "NIV"
+        switch color {
+        case .dark:
+            return "Dark"
+        case .light:
+            return "Light"
+        case .sepia:
+            return "Sepia"
+        case .system:
+            return "System"
         }
 	}
-	
+
+    func getFullTranslation(translation: ScriptureTranslation) -> String {
+        switch translation {
+        case .kjv:
+            return "KJV"
+        case .nlt:
+            return "NLT"
+        case .niv:
+            return "NIV"
+        }
+	}
+
     func getColorForBody() -> String {
-		switch udManager.getScriptureColor() {
-		case .dark:
+        switch udManager.getScriptureColor() {
+        case .dark:
 			return "color: white;background-color: black;"
-		case .light:
+        case .light:
 			return "color: black;background-color: white;"
-		case .sepia:
+        case .sepia:
 			return "color: gray;background-color: #fff8c9;"
         case .system:
             if DarkModeManager().isDarkMode {
@@ -85,7 +85,7 @@ class ScriptureStyleSheet  {
             }
         }
 	}
-	
+
     func getFontSizeForBody() -> String {
 		switch udManager.getScriptureFontSize() {
 		case .extraSmall:
@@ -102,9 +102,9 @@ class ScriptureStyleSheet  {
 			return "font-size: 38px; }; p {font-size: 40pt;}; .extra_text {font-size: 60;}; .s1 {font-weight: bold;}"
 		}
 	}
-	
+
     func getFontFamilyForBody() -> String {
-		switch udManager.getScriptureFontFamily()  {
+		switch udManager.getScriptureFontFamily() {
 		case .times:
 			return "font-family: \"Times New Roman\";"
 		case .arial:
@@ -117,13 +117,13 @@ class ScriptureStyleSheet  {
 			return "font-family: \"Avenir\";"
 		}
 	}
-	
+
      func getCopyright(copyright: String?) -> String {
         return """
         <p style="font-size: 12px;">\(copyright ?? "")</p>
-        """;
+        """
     }
-    
+
 	 func getFullHTMLWith(body: String) -> String {
 		var output = ""
 
@@ -134,17 +134,17 @@ class ScriptureStyleSheet  {
 		output += self.style
 		output += body
 		output += self.htmlEnd
-		
+
 		return output
 	}
-	
+
     let htmlStart = """
 <html>
 
 <style>
 body {
 			font-family: "Arial";
-			
+
 """
     let htmlEnd = "</section></body></html>"
     let style = """
@@ -189,7 +189,6 @@ body {
 			.vn {
 				padding: 5px;
 			}
-			
 
 			.book-name {
 
@@ -218,7 +217,6 @@ body {
 				font-style: italic;
 			}
 
-	
 
 		</style>
 	<body>

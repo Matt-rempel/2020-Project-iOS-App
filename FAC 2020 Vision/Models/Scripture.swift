@@ -14,10 +14,10 @@ class Scripture {
 	var translations: [Translation]? = []
     var isCompleted = false
 	
-    internal init(json: [String : Any]) {
+    internal init(json: [String: Any]) {
 		title = json["title"] as? String ?? ""
 		slug = json["slug"] as? String ?? ""
-        let translationJSONArray = json["translations"] as? [[String : String]] ?? []
+        let translationJSONArray = json["translations"] as? [[String: String]] ?? []
         for translationJSON in translationJSONArray {
             translations?.append(Translation(json: translationJSON))
         }

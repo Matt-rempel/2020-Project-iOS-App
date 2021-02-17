@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1FD67321EE79235B97DD20BE /* Pods_FAC_2020_VisionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494D063A9778C7AD54D5707B /* Pods_FAC_2020_VisionTests.framework */; };
 		3412B8972579D895000372CF /* PagingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3412B8962579D895000372CF /* PagingManager.swift */; };
 		3420B6BB238DA7D1003004C4 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420B6BA238DA7D1003004C4 /* CalendarCell.swift */; };
 		3420B6BD238DB008003004C4 /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420B6BC238DB008003004C4 /* ShareButton.swift */; };
@@ -51,29 +50,22 @@
 		34EE14EC2378A1E900B54092 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34EE14EA2378A1E900B54092 /* Main.storyboard */; };
 		34EE14EE2378A1ED00B54092 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34EE14ED2378A1ED00B54092 /* Assets.xcassets */; };
 		34EE14F12378A1ED00B54092 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34EE14EF2378A1ED00B54092 /* LaunchScreen.storyboard */; };
-		34EE14FC2378A1ED00B54092 /* FAC_2020_VisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE14FB2378A1ED00B54092 /* FAC_2020_VisionTests.swift */; };
-		34EE15072378A1ED00B54092 /* FAC_2020_VisionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE15062378A1ED00B54092 /* FAC_2020_VisionUITests.swift */; };
 		34EE151A2378B78600B54092 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE15192378B78600B54092 /* TodayView.swift */; };
 		34EE15202378C74F00B54092 /* Date Formater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE151F2378C74F00B54092 /* Date Formater.swift */; };
 		34EE15222378FF7500B54092 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE15212378FF7500B54092 /* Colors.swift */; };
 		34EE15242379019700B54092 /* LargeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EE15232379019700B54092 /* LargeCollectionViewCell.swift */; };
 		34F1039B25704FB100B0423A /* Codextended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1039A25704FB100B0423A /* Codextended.swift */; };
-		34F103A2257053E600B0423A /* Codextended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1039A25704FB100B0423A /* Codextended.swift */; };
-		34F103A3257053E600B0423A /* Codextended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1039A25704FB100B0423A /* Codextended.swift */; };
 		34F103A4257053E600B0423A /* Codextended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1039A25704FB100B0423A /* Codextended.swift */; };
 		34F103A72570567D00B0423A /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F103A62570567D00B0423A /* Author.swift */; };
 		34F103AA2570567D00B0423A /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F103A62570567D00B0423A /* Author.swift */; };
 		34F103AC257058C500B0423A /* Devotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F103AB257058C500B0423A /* Devotion.swift */; };
 		34F103B125705E5B00B0423A /* Scripture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F103B025705E5B00B0423A /* Scripture.swift */; };
-		34F103B5257060D200B0423A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C475EF238C5643004CF452 /* Reachability.swift */; };
 		34F103B6257060D200B0423A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C475EF238C5643004CF452 /* Reachability.swift */; };
-		34F103B7257060D200B0423A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C475EF238C5643004CF452 /* Reachability.swift */; };
 		34F103BB257061AE00B0423A /* DB Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F103BA257061AE00B0423A /* DB Access.swift */; };
 		34F103C1257081DD00B0423A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 34F103C0257081DD00B0423A /* Alamofire */; };
 		34F103C32570885B00B0423A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 34F103C22570885B00B0423A /* Alamofire */; };
 		34F103C62570994400B0423A /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 34F103C52570994400B0423A /* SwiftyJSON */; };
 		34F103C825709AA400B0423A /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 34F103C725709AA400B0423A /* SwiftyJSON */; };
-		8C76A4086ED7E13F89B23F1D /* Pods_FAC_2020_VisionUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 913C9265630FD7D10EE5DC2B /* Pods_FAC_2020_VisionUITests.framework */; };
 		A7A08F9744987218546A9A27 /* Pods_FAC_2020_Vision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826E2BC38E4412D7DCC7FF96 /* Pods_FAC_2020_Vision.framework */; };
 		C902A9972599332500750314 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = C902A9962599332500750314 /* FacebookLogin */; };
 		C902A9992599332500750314 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = C902A9982599332500750314 /* FacebookCore */; };
@@ -125,20 +117,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 34CC7CF724EF0DD800CFC711;
 			remoteInfo = "2020 Project WidgetExtension";
-		};
-		34EE14F82378A1ED00B54092 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 34EE14D92378A1E900B54092 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 34EE14E02378A1E900B54092;
-			remoteInfo = "FAC 2020 Vision";
-		};
-		34EE15032378A1ED00B54092 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 34EE14D92378A1E900B54092 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 34EE14E02378A1E900B54092;
-			remoteInfo = "FAC 2020 Vision";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -205,12 +183,6 @@
 		34EE14ED2378A1ED00B54092 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34EE14F02378A1ED00B54092 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		34EE14F22378A1ED00B54092 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		34EE14F72378A1ED00B54092 /* FAC 2020 VisionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FAC 2020 VisionTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		34EE14FB2378A1ED00B54092 /* FAC_2020_VisionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAC_2020_VisionTests.swift; sourceTree = "<group>"; };
-		34EE14FD2378A1ED00B54092 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		34EE15022378A1ED00B54092 /* FAC 2020 VisionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FAC 2020 VisionUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		34EE15062378A1ED00B54092 /* FAC_2020_VisionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAC_2020_VisionUITests.swift; sourceTree = "<group>"; };
-		34EE15082378A1ED00B54092 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34EE15192378B78600B54092 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		34EE151F2378C74F00B54092 /* Date Formater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date Formater.swift"; sourceTree = "<group>"; };
 		34EE15212378FF7500B54092 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -282,22 +254,6 @@
 				34F103C62570994400B0423A /* SwiftyJSON in Frameworks */,
 				A7A08F9744987218546A9A27 /* Pods_FAC_2020_Vision.framework in Frameworks */,
 				34F103C1257081DD00B0423A /* Alamofire in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		34EE14F42378A1ED00B54092 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1FD67321EE79235B97DD20BE /* Pods_FAC_2020_VisionTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		34EE14FF2378A1ED00B54092 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8C76A4086ED7E13F89B23F1D /* Pods_FAC_2020_VisionUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,8 +383,6 @@
 			children = (
 				C9C7AD1E24F2DA85004E8242 /* 2020 Project WidgetExtension.entitlements */,
 				34EE14E32378A1E900B54092 /* FAC 2020 Vision */,
-				34EE14FA2378A1ED00B54092 /* FAC 2020 VisionTests */,
-				34EE15052378A1ED00B54092 /* FAC 2020 VisionUITests */,
 				34CC7CFD24EF0DD800CFC711 /* 2020 Project Widget */,
 				34EE14E22378A1E900B54092 /* Products */,
 				C4D8765F9B07E557FDDC0144 /* Pods */,
@@ -440,8 +394,6 @@
 			isa = PBXGroup;
 			children = (
 				34EE14E12378A1E900B54092 /* 2020 Project.app */,
-				34EE14F72378A1ED00B54092 /* FAC 2020 VisionTests.xctest */,
-				34EE15022378A1ED00B54092 /* FAC 2020 VisionUITests.xctest */,
 				34CC7CF824EF0DD800CFC711 /* 2020 Project WidgetExtension.appex */,
 			);
 			name = Products;
@@ -466,24 +418,6 @@
 				34EE14F22378A1ED00B54092 /* Info.plist */,
 			);
 			path = "FAC 2020 Vision";
-			sourceTree = "<group>";
-		};
-		34EE14FA2378A1ED00B54092 /* FAC 2020 VisionTests */ = {
-			isa = PBXGroup;
-			children = (
-				34EE14FB2378A1ED00B54092 /* FAC_2020_VisionTests.swift */,
-				34EE14FD2378A1ED00B54092 /* Info.plist */,
-			);
-			path = "FAC 2020 VisionTests";
-			sourceTree = "<group>";
-		};
-		34EE15052378A1ED00B54092 /* FAC 2020 VisionUITests */ = {
-			isa = PBXGroup;
-			children = (
-				34EE15062378A1ED00B54092 /* FAC_2020_VisionUITests.swift */,
-				34EE15082378A1ED00B54092 /* Info.plist */,
-			);
-			path = "FAC 2020 VisionUITests";
 			sourceTree = "<group>";
 		};
 		34EE1525237901A200B54092 /* Today View */ = {
@@ -639,6 +573,7 @@
 				3447C4C6239959A90075B6F9 /* Run Script */,
 				34CC7D0924EF0DDC00CFC711 /* Embed App Extensions */,
 				9499D4B3A274F16A0C49291C /* [CP] Copy Pods Resources */,
+				C9588F5D25DAEE5B004FF36E /* Swift Lint Script */,
 			);
 			buildRules = (
 			);
@@ -657,44 +592,6 @@
 			productReference = 34EE14E12378A1E900B54092 /* 2020 Project.app */;
 			productType = "com.apple.product-type.application";
 		};
-		34EE14F62378A1ED00B54092 /* FAC 2020 VisionTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 34EE150E2378A1ED00B54092 /* Build configuration list for PBXNativeTarget "FAC 2020 VisionTests" */;
-			buildPhases = (
-				FA38490111E4F5C725B80918 /* [CP] Check Pods Manifest.lock */,
-				34EE14F32378A1ED00B54092 /* Sources */,
-				34EE14F42378A1ED00B54092 /* Frameworks */,
-				34EE14F52378A1ED00B54092 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				34EE14F92378A1ED00B54092 /* PBXTargetDependency */,
-			);
-			name = "FAC 2020 VisionTests";
-			productName = "FAC 2020 VisionTests";
-			productReference = 34EE14F72378A1ED00B54092 /* FAC 2020 VisionTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		34EE15012378A1ED00B54092 /* FAC 2020 VisionUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 34EE15112378A1ED00B54092 /* Build configuration list for PBXNativeTarget "FAC 2020 VisionUITests" */;
-			buildPhases = (
-				C30C9B9C835534B170B86BAE /* [CP] Check Pods Manifest.lock */,
-				34EE14FE2378A1ED00B54092 /* Sources */,
-				34EE14FF2378A1ED00B54092 /* Frameworks */,
-				34EE15002378A1ED00B54092 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				34EE15042378A1ED00B54092 /* PBXTargetDependency */,
-			);
-			name = "FAC 2020 VisionUITests";
-			productName = "FAC 2020 VisionUITests";
-			productReference = 34EE15022378A1ED00B54092 /* FAC 2020 VisionUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -710,14 +607,6 @@
 					};
 					34EE14E02378A1E900B54092 = {
 						CreatedOnToolsVersion = 11.2;
-					};
-					34EE14F62378A1ED00B54092 = {
-						CreatedOnToolsVersion = 11.2;
-						TestTargetID = 34EE14E02378A1E900B54092;
-					};
-					34EE15012378A1ED00B54092 = {
-						CreatedOnToolsVersion = 11.2;
-						TestTargetID = 34EE14E02378A1E900B54092;
 					};
 				};
 			};
@@ -742,8 +631,6 @@
 			projectRoot = "";
 			targets = (
 				34EE14E02378A1E900B54092 /* FAC 2020 Vision */,
-				34EE14F62378A1ED00B54092 /* FAC 2020 VisionTests */,
-				34EE15012378A1ED00B54092 /* FAC 2020 VisionUITests */,
 				34CC7CF724EF0DD800CFC711 /* 2020 Project WidgetExtension */,
 			);
 		};
@@ -772,20 +659,6 @@
 				34451045239DA681005F8B79 /* GoogleService-Info.plist in Resources */,
 				3420B6FE238F51BA003004C4 /* lightBlue@3x.png in Resources */,
 				3420B6FC238F51B5003004C4 /* lightBlue@2x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		34EE14F52378A1ED00B54092 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		34EE15002378A1ED00B54092 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -850,7 +723,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FAC 2020 Vision/Pods-FAC 2020 Vision-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C30C9B9C835534B170B86BAE /* [CP] Check Pods Manifest.lock */ = {
+		C9588F5D25DAEE5B004FF36E /* Swift Lint Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -858,19 +731,15 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "Swift Lint Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FAC 2020 VisionUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		F14567825E69D4500D8549EC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -887,28 +756,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FAC 2020 Vision/Pods-FAC 2020 Vision-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FA38490111E4F5C725B80918 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FAC 2020 VisionTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1007,26 +854,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		34EE14F32378A1ED00B54092 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				34EE14FC2378A1ED00B54092 /* FAC_2020_VisionTests.swift in Sources */,
-				34F103B7257060D200B0423A /* Reachability.swift in Sources */,
-				34F103A3257053E600B0423A /* Codextended.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		34EE14FE2378A1ED00B54092 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				34EE15072378A1ED00B54092 /* FAC_2020_VisionUITests.swift in Sources */,
-				34F103B5257060D200B0423A /* Reachability.swift in Sources */,
-				34F103A2257053E600B0423A /* Codextended.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1034,16 +861,6 @@
 			isa = PBXTargetDependency;
 			target = 34CC7CF724EF0DD800CFC711 /* 2020 Project WidgetExtension */;
 			targetProxy = 34CC7D0624EF0DDC00CFC711 /* PBXContainerItemProxy */;
-		};
-		34EE14F92378A1ED00B54092 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 34EE14E02378A1E900B54092 /* FAC 2020 Vision */;
-			targetProxy = 34EE14F82378A1ED00B54092 /* PBXContainerItemProxy */;
-		};
-		34EE15042378A1ED00B54092 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 34EE14E02378A1E900B54092 /* FAC 2020 Vision */;
-			targetProxy = 34EE15032378A1ED00B54092 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1296,94 +1113,6 @@
 			};
 			name = Release;
 		};
-		34EE150F2378A1ED00B54092 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C4B61246F49C862990F5F5B /* Pods-FAC 2020 VisionTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HG5T88K699;
-				INFOPLIST_FILE = "FAC 2020 VisionTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.foothillsalliance.FAC-2020-VisionTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/2020 Project.app/2020 Project";
-			};
-			name = Debug;
-		};
-		34EE15102378A1ED00B54092 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A1733703C24DB314890F5CE /* Pods-FAC 2020 VisionTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HG5T88K699;
-				INFOPLIST_FILE = "FAC 2020 VisionTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.foothillsalliance.FAC-2020-VisionTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/2020 Project.app/2020 Project";
-			};
-			name = Release;
-		};
-		34EE15122378A1ED00B54092 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D15BC45CE4E81BBB2099B3D1 /* Pods-FAC 2020 VisionUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HG5T88K699;
-				INFOPLIST_FILE = "FAC 2020 VisionUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.foothillsalliance.FAC-2020-VisionUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "FAC 2020 Vision";
-			};
-			name = Debug;
-		};
-		34EE15132378A1ED00B54092 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3CFD7EB1ED585ED0CE5A9BF /* Pods-FAC 2020 VisionUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HG5T88K699;
-				INFOPLIST_FILE = "FAC 2020 VisionUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.foothillsalliance.FAC-2020-VisionUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "FAC 2020 Vision";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1410,24 +1139,6 @@
 			buildConfigurations = (
 				34EE150C2378A1ED00B54092 /* Debug */,
 				34EE150D2378A1ED00B54092 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		34EE150E2378A1ED00B54092 /* Build configuration list for PBXNativeTarget "FAC 2020 VisionTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				34EE150F2378A1ED00B54092 /* Debug */,
-				34EE15102378A1ED00B54092 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		34EE15112378A1ED00B54092 /* Build configuration list for PBXNativeTarget "FAC 2020 VisionUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				34EE15122378A1ED00B54092 /* Debug */,
-				34EE15132378A1ED00B54092 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -45,7 +45,7 @@ class UserDefaultsManager {
 		return UserDefaults.standard.array(forKey: key)
 	}
 	
-    private func getDictionaryValueWith(key: String) -> [String : Any]? {
+    private func getDictionaryValueWith(key: String) -> [String: Any]? {
 		return UserDefaults.standard.dictionary(forKey: key)
     }
     
@@ -66,7 +66,6 @@ class UserDefaultsManager {
         return ScriptureTranslation(rawValue: getStringValueWith(key: self.scriptureTranslationKey) ?? "niv") ?? .niv
     }
     
-    
     func setScriptureColor(color: ScriptureColor) {
         self.set(value: color.rawValue, key: self.scriptureColorKey)
     }
@@ -83,12 +82,10 @@ class UserDefaultsManager {
         self.set(value: translation.rawValue, key: self.scriptureTranslationKey)
     }
     
-    
     // MARK: App Icon Methods
 	func getAppIcon() -> AppIconType {
 		return AppIconType(rawValue: getStringValueWith(key: self.appIconKey) ?? "lightBlue") ?? .lightBlue
     }
-	
 	
 //	func getSavedDevoVersion(key: String) -> Int? {
 //		return getIntValueWith(key: self.savedDevoVersionKey + key)
@@ -107,9 +104,9 @@ class UserDefaultsManager {
 		return set(value: bookmarks, key: self.bookmarksKey)
 	}
 	
-	func addBookmarkWith(month:String, UDID: String) {
+	func addBookmarkWith(month: String, UDID: String) {
 		var bookmarks = self.getSavedBookmarks()
-		if let _ = bookmarks[month] {
+		if bookmarks[month] != nil {
 			bookmarks[month]?.append(UDID)
 		} else {
 			bookmarks[month] = [UDID]
@@ -117,7 +114,7 @@ class UserDefaultsManager {
 		self.setSavedBookmarks(bookmarks: bookmarks)
 	}
 	
-	func removeBookmarkWith(month:String, UDID: String) {
+	func removeBookmarkWith(month: String, UDID: String) {
 		var bookmarks = self.getSavedBookmarks()
 		if let monthArray = bookmarks[month] {
 			bookmarks[month] = monthArray.filter { $0 != UDID }
@@ -125,7 +122,7 @@ class UserDefaultsManager {
 		self.setSavedBookmarks(bookmarks: bookmarks)
 	}
     
-    func toggleBookmark(month:String, UDID: String) {
+    func toggleBookmark(month: String, UDID: String) {
         if checkIfInBookmarks(month: month, UDID: UDID) {
             self.removeBookmarkWith(month: month, UDID: UDID)
         } else {
@@ -145,8 +142,8 @@ class UserDefaultsManager {
     func getTotalSavedBookmarks() -> Int {
         var totalBookmarks = 0
         let bookmarkUDIDs = self.getSavedBookmarks()
-        for (_, DevoDates) in bookmarkUDIDs {
-            totalBookmarks += Array(Set(DevoDates)).count
+        for (_, devoDates) in bookmarkUDIDs {
+            totalBookmarks += Array(Set(devoDates)).count
         }
         
         return totalBookmarks
@@ -168,7 +165,7 @@ class UserDefaultsManager {
     // MARK: Calendar Methods
     func toggleOrder() {
         let currentOrder = getSortOrder()
-        let newOrder:DevotionOrderType = (currentOrder == .decending) ? .ascending : .decending
+        let newOrder: DevotionOrderType = (currentOrder == .decending) ? .ascending : .decending
         self.set(value: newOrder.rawValue, key: self.calendarSortOrderKey)
     }
 	
@@ -209,7 +206,6 @@ class UserDefaultsManager {
             self.set(value: signInMethod.rawValue, key: self.signInMethodKey)
         }
     }
-    
     
 //    func getClosedPopUpUPUIDs() -> [String] {
 //        return self.getArrayWith(key: self.closedPopUpsKey) as? [String] ?? [""]

@@ -13,10 +13,10 @@ import SwiftyJSON
 class ScriptureManager: DBAccessor {
     
     let authManager = AuthenticationManager()
-    let icloudManager = iCloudManager()
+    let icloudManager = IcloudManager()
     
     // MARK: - Set a scripture as read
-    func setScriptureProgress(devotion: Devotion, scripture: Scripture, completion: @escaping (Error?) throws -> ()) {
+    func setScriptureProgress(devotion: Devotion, scripture: Scripture, completion: @escaping (Error?) throws -> Void) {
         if let key = authManager.key {
             self.setScriptureAsRead(devotion: devotion, scripture: scripture, key: key) { (error) in
                 do {
@@ -35,7 +35,7 @@ class ScriptureManager: DBAccessor {
         }
     }
     
-    func setScriptureAsRead(devotion: Devotion, scripture: Scripture, key: String, completion: @escaping (Error?) throws -> ()) {
+    func setScriptureAsRead(devotion: Devotion, scripture: Scripture, key: String, completion: @escaping (Error?) throws -> Void) {
         let calendar = Calendar.current
         let year = calendar.component(.year, from: devotion.date)
         let month = calendar.component(.month, from: devotion.date)
@@ -50,7 +50,7 @@ class ScriptureManager: DBAccessor {
         }
         
         let url = "\(baseURL)devotionals/\(year)/\(month)/\(day)/scripture/\(scriptureSlug)/read/"
-        let headers:HTTPHeaders = ["Authorization": "Token \(key)"]
+        let headers: HTTPHeaders = ["Authorization": "Token \(key)"]
         
         AF.request(url, method: .post, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             print(response)
@@ -68,7 +68,7 @@ class ScriptureManager: DBAccessor {
         }
     }
     
-    func setScriptureAsRead(title: String, year: Int, month: Int, day: Int, completion: @escaping (Error?) throws -> ()) {
+    func setScriptureAsRead(title: String, year: Int, month: Int, day: Int, completion: @escaping (Error?) throws -> Void) {
         guard let scriptureSlug = title.convertedToSlug() else {
             do {
                 try completion(DBAccessError.couldNotEncodeData)
@@ -84,7 +84,7 @@ class ScriptureManager: DBAccessor {
         }
         
         let url = "\(baseURL)devotionals/\(year)/\(month)/\(day)/scripture/\(scriptureSlug)/read/"
-        let headers:HTTPHeaders = ["Authorization": "Token \(key)"]
+        let headers: HTTPHeaders = ["Authorization": "Token \(key)"]
         
         AF.request(url, method: .post, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             print(response)
@@ -104,7 +104,7 @@ class ScriptureManager: DBAccessor {
     }
 
     // MARK: - Get scripture progress
-    func getScriptureProgress(devotion: Devotion, completion: @escaping (Error?) throws -> ()) {
+    func getScriptureProgress(devotion: Devotion, completion: @escaping (Error?) throws -> Void) {
         if let key = authManager.key {
             self.getScriptureProgressFromAPI(devotion: devotion, key: key) { (error) in
                 do {
@@ -123,14 +123,14 @@ class ScriptureManager: DBAccessor {
         }
     }
     
-    private func getScriptureProgressFromAPI(devotion: Devotion, key: String, completion: @escaping (Error?) throws -> ()) {
+    private func getScriptureProgressFromAPI(devotion: Devotion, key: String, completion: @escaping (Error?) throws -> Void) {
         let calendar = Calendar.current
         let year = calendar.component(.year, from: devotion.date)
         let month = calendar.component(.month, from: devotion.date)
         let day = calendar.component(.day, from: devotion.date)
         
         let url = "\(baseURL)devotionals/\(year)/\(month)/\(day)/reading-history/"
-        let headers:HTTPHeaders = ["Authorization": "Token \(key)"]
+        let headers: HTTPHeaders = ["Authorization": "Token \(key)"]
         
         AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
 //            print(response)
@@ -144,7 +144,7 @@ class ScriptureManager: DBAccessor {
 //                    dump(data)
                     let json = try JSON(data: data)
 //                    dump(json)
-                    if let readingProgress = json.dictionaryObject as? [String : Bool] {
+                    if let readingProgress = json.dictionaryObject as? [String: Bool] {
                         // Match the readingProgress keys with the devotion scripture titles
                         for scripture in devotion.scriptue {
                             let isDone = readingProgress[scripture.title] ?? false
@@ -174,6 +174,4 @@ class ScriptureManager: DBAccessor {
         }
     }
 
-    
-    
 }

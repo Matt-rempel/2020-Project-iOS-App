@@ -9,7 +9,6 @@
 import UIKit
 import BLTNBoard
 
-
 @objc public class ProgressBulletinPage: BLTNPageItem {
 
     @objc public var progressView: UIProgressView!

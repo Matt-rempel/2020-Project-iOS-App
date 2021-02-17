@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class Colors {
-	public static var tintColor:UIColor! = UIView().tintColor
+	public static var tintColor: UIColor! = UIView().tintColor
 //		UIColor(red:0.05, green:0.28, blue:0.43, alpha:1.00)
-	public static var fadedColor = UIColor(red:0.96, green:0.96, blue:0.99, alpha:1.0)
+	public static var fadedColor = UIColor(red: 0.96, green: 0.96, blue: 0.99, alpha: 1.0)
 }

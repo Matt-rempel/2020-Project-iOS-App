@@ -19,7 +19,7 @@ class DailyReminderTableView: UITableViewController {
 	@IBOutlet weak var openSettingsButton: UIButton!
 	
 	// Variables
-	var NUMBER_OF_SECTIONS = 3
+	var numberOfSections = 3
 	var canShowDatePicker = false
 	var canShowErrorCell = false
 	
@@ -27,7 +27,7 @@ class DailyReminderTableView: UITableViewController {
     let udManager = UserDefaultsManager()
     
 	let center = UNUserNotificationCenter.current()
-	let options: UNAuthorizationOptions = [.alert, .sound];
+	let options: UNAuthorizationOptions = [.alert, .sound]
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,18 +52,18 @@ class DailyReminderTableView: UITableViewController {
 
     // MARK: - TableView
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return NUMBER_OF_SECTIONS
+        return numberOfSections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		switch section {
-		case 0:
+        switch section {
+        case 0:
 			return 1
-		case 1:
+        case 1:
 			return canShowDatePicker ? 1 : 0
         case 2:
 			return canShowErrorCell ? 1 : 0
-		default:
+        default:
 			return 1
 		}
     }
@@ -72,11 +72,10 @@ class DailyReminderTableView: UITableViewController {
 	@IBAction func showNotificationsToggled(_ sender: Any) {
 		if showNotificationsSwitch.isOn {
 			canShowDatePicker = true
-			
 			checkNotificationPermissions()
 			
 			// Request to show notifications
-			center.requestAuthorization(options: options) { (granted, error) in
+			center.requestAuthorization(options: options) { (granted, _) in
 				if granted {
 					DispatchQueue.main.async {
 						self.canShowDatePicker = true
@@ -104,7 +103,7 @@ class DailyReminderTableView: UITableViewController {
 			canShowErrorCell = false
 			
 			udManager.removeNotificationTime()
-			
+
 			self.tableView.reloadData()
 			
 			center.removeAllPendingNotificationRequests()
@@ -126,7 +125,7 @@ class DailyReminderTableView: UITableViewController {
 		udManager.setNotificationTime(time: saveTime)
 
 		notificationTimeLabel.text = "Notification Time: " + saveTime
-		
+
 		removeAllNotifications()
 		createNotification()
         
@@ -155,7 +154,7 @@ class DailyReminderTableView: UITableViewController {
 			})
 		}
 	}
-	
+
 	// MARK: - Notifications
 	func checkIfThereIsASavedNotification() {
 		let savedTime = udManager.getNotificationTime()
@@ -166,7 +165,7 @@ class DailyReminderTableView: UITableViewController {
 			self.notificationTimeDatePicker.date = dateFormater.getTimeFromString(string: savedTime) ?? Date()
 			self.tableView.reloadData()
 		}
-		
+
 		self.checkNotificationPermissions()
 
 	}
@@ -182,7 +181,7 @@ class DailyReminderTableView: UITableViewController {
 		let date = notificationTimeDatePicker.date
 		let triggerDaily = Calendar.current.dateComponents([.hour, .minute, .second], from: date)
 		let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDaily, repeats: true)
-		
+
 		// Schedual Trigger
 		let identifier = "UYLLocalNotification"
 		let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
@@ -198,21 +197,21 @@ class DailyReminderTableView: UITableViewController {
 	func removeAllNotifications() {
 		center.removeAllPendingNotificationRequests()
 	}
-	
+
 	func checkNotificationPermissions() {
 		// Check notification permissions
 		center.getNotificationSettings { (settings) in
 			if settings.authorizationStatus != .authorized {
 				// Notifications not allowed
 				DispatchQueue.main.async {
-					if (self.showNotificationsSwitch.isOn) {
+					if self.showNotificationsSwitch.isOn {
 						self.canShowErrorCell = true
 						self.tableView.reloadData()
 					}
 				}
 			} else {
 				DispatchQueue.main.async {
-					if (self.showNotificationsSwitch.isOn) {
+					if self.showNotificationsSwitch.isOn {
 						self.canShowErrorCell = false
 						self.tableView.reloadData()
 					}

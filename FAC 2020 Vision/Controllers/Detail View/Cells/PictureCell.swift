@@ -26,8 +26,8 @@ class PictureCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-	func downloadImage(from unsplash_id: String) {
-        usDownloader.getImage(unsplash_id: unsplash_id) { (image, _, error) in
+	func downloadImage(from unsplashId: String) {
+        usDownloader.getImage(unsplashId: unsplashId) { (image, _, _) in
             self.activityIndicator.isHidden = true
             self.activityIndicator.stopAnimating()
             self.backgroundImageView.image = image

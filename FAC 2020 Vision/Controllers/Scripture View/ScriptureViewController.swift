@@ -16,7 +16,7 @@ class ScriptureViewController: UIViewController {
     @IBOutlet weak var activitiyIndicator: UIActivityIndicatorView!
     @IBOutlet weak var moreButton: UIBarButtonItem!
     
-    var viewScripture:Scripture!
+    var viewScripture: Scripture!
     var didLayoutSubviews = false
     let udManager = UserDefaultsManager()
     let scriptureSS = ScriptureStyleSheet()
@@ -64,8 +64,7 @@ class ScriptureViewController: UIViewController {
         
         // Get Passages
         getPassages()
-        
-        
+
         // Prevent UINavigationBar overlap of UITextView
         if #available(iOS 13.0, *) {
             self.textView.setContentOffset(CGPoint(x: 0, y: -(self.getTopbarHeight + 100)), animated: true)
@@ -80,7 +79,8 @@ class ScriptureViewController: UIViewController {
                 
             } else {
                 self.textView.setContentOffset(.zero, animated: false)
-                self.textView.setContentOffset(CGPoint(x: self.textView.contentOffset.x, y: self.textView.contentOffset.y - (self.getTopbarHeight)), animated: false)
+                let offset = CGPoint(x: self.textView.contentOffset.x, y: self.textView.contentOffset.y - (self.getTopbarHeight))
+                self.textView.setContentOffset(offset, animated: false)
             }
         }
         
@@ -122,7 +122,7 @@ class ScriptureViewController: UIViewController {
     
     func getScripture(scripture: Scripture, translationType: ScriptureTranslation) -> String {
         let translationName = translationType.rawValue.lowercased()
-        var passageHTML:String = "Translation not found. Please try again later."
+        var passageHTML: String = "Translation not found. Please try again later."
         
         if let translations = scripture.translations {
             for translation in translations {
@@ -136,9 +136,7 @@ class ScriptureViewController: UIViewController {
         
         return passageHTML
     }
-    
-    
-    
+
     // MARK: - IBActions
     @IBAction func moreButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "fontView", sender: nil)
@@ -146,9 +144,10 @@ class ScriptureViewController: UIViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let navVC = segue.destination as! UINavigationController
-        let vc = navVC.viewControllers[0] as! FontSettingsTableView
-        vc.delegate = self
+        if let navVC = segue.destination as? UINavigationController,
+           let fontSettingsTableView = navVC.viewControllers[0] as? FontSettingsTableView {
+            fontSettingsTableView.delegate = self
+        }
     }
     
 }

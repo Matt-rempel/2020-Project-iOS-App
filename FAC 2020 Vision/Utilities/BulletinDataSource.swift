@@ -30,7 +30,6 @@ class BulletinDataSource {
                 item.manager?.dismissBulletin()
                 print("Closing pop up")
                 
-                
                 // Open URL
                 if let url = notification.actionButtonLink {
                     todayView.showSafariWebPageFor(url: url)
@@ -39,7 +38,7 @@ class BulletinDataSource {
         }
 
         page.alternativeHandler = { item in
-            if let _ = page.next {
+            if page.next != nil {
                 item.manager?.displayNextItem()
             } else {
                 item.manager?.dismissBulletin()
@@ -67,7 +66,7 @@ class BulletinDataSource {
                 return
             }
             
-            self.authManager.transferDeviceDataToAccount(progressView: progressView) { (error) in
+            self.authManager.transferDeviceDataToAccount(progressView: progressView) { (_) in
                 page.manager?.displayNextItem()
             }
             
@@ -81,9 +80,6 @@ class BulletinDataSource {
             NotificationCenter.default.post(name: .DimissedBulletin, object: item)
         }
 
-        
-        
-        
         return page
     }
     
@@ -92,7 +88,6 @@ class BulletinDataSource {
         page.requiresCloseButton = false
         page.descriptionText = "3 seconds remaining..."
         page.next = getTransferCompletePage()
-        
 
         return page
     }

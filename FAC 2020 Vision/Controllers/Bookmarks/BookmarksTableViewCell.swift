@@ -13,8 +13,7 @@ class BookmarksTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

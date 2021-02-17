@@ -35,9 +35,9 @@ class SettingsTableView: UITableViewController, MFMailComposeViewControllerDeleg
 	
 	@IBOutlet weak var dailyReminderLabel: UILabel!
 	
-	let NUMBER_OF_SECTIONS = 7
-    var NUMBER_OF_CELLS:[Int] = []
-    var SECTION_HEADERS:[String?]!
+	let numberOfSections = 7
+    var numberOfCells: [Int] = []
+    var sectionHeaders: [String?]!
     var supportEmail = "foothills2020vision@gmail.com"
 	
     let udManager = UserDefaultsManager()
@@ -48,11 +48,11 @@ class SettingsTableView: UITableViewController, MFMailComposeViewControllerDeleg
         
         // iOS 12 UI Support
         if #available(iOS 13.0, *) {
-            NUMBER_OF_CELLS = [1, 1, 1, 2, 1, 1, 1]
-            SECTION_HEADERS = ["Account", "App Icon", "Reminder", "Build Info", "Support", "Legal", nil]
+            numberOfCells = [1, 1, 1, 2, 1, 1, 1]
+            sectionHeaders = ["Account", "App Icon", "Reminder", "Build Info", "Support", "Legal", nil]
         } else {
-            NUMBER_OF_CELLS = [0, 1, 1, 2, 1, 1, 1]
-            SECTION_HEADERS = [nil, "App Icon", "Reminder", "Build Info", "Support", "Legal", nil]
+            numberOfCells = [0, 1, 1, 2, 1, 1, 1]
+            sectionHeaders = [nil, "App Icon", "Reminder", "Build Info", "Support", "Legal", nil]
         }
         
         // Fill In UI
@@ -71,16 +71,15 @@ class SettingsTableView: UITableViewController, MFMailComposeViewControllerDeleg
 		
 		// Fill in UI
 		dailyReminderLabel.text = udManager.getNotificationTime()
-        
 	}
 
 	// MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return NUMBER_OF_SECTIONS
+        return numberOfSections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return NUMBER_OF_CELLS[section]
+        return numberOfCells[section]
     }
 
 	override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
@@ -98,7 +97,6 @@ class SettingsTableView: UITableViewController, MFMailComposeViewControllerDeleg
 		}
 	}
     
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             self.performSegue(withIdentifier: "account", sender: nil)
@@ -108,7 +106,7 @@ class SettingsTableView: UITableViewController, MFMailComposeViewControllerDeleg
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return SECTION_HEADERS[section]
+        return sectionHeaders[section]
     }
 	
     // MARK: - Helper Methods
@@ -133,7 +131,6 @@ class SettingsTableView: UITableViewController, MFMailComposeViewControllerDeleg
 		changeIcon(to: AppIconType.blackIcon.rawValue)
 	}
 	
-    
     @IBAction func donePressed(_ sender: Any) {
 		self.dismiss(animated: true, completion: nil)
 	}
@@ -158,10 +155,10 @@ class SettingsTableView: UITableViewController, MFMailComposeViewControllerDeleg
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
     }
-    
+
 	// MARK: - Multiple App Icons
 	func changeIcon(to iconName: String?) {
-		
+
 		guard UIApplication.shared.supportsAlternateIcons else {
 			return
 		}
@@ -176,8 +173,7 @@ class SettingsTableView: UITableViewController, MFMailComposeViewControllerDeleg
 			}
 		})
 	}
-	
-	
+
 	func updateCurrentIconUI() {
 		lightBlueView.appIconDesign(selected: false)
 		darkBlueView.appIconDesign(selected: false)
@@ -187,13 +183,11 @@ class SettingsTableView: UITableViewController, MFMailComposeViewControllerDeleg
             lightBlueButtonCheckImage.image = UIImage(systemName: "checkmark.circle")
             darkBlueImageCheckImage.image = UIImage(systemName: "checkmark.circle")
             blackImageCheckImage.image = UIImage(systemName: "checkmark.circle")
-            
         } else {
             // Fallback on earlier versions
             lightBlueButtonCheckImage.image = UIImage(named: "checkmark")
             darkBlueImageCheckImage.image = UIImage(named: "checkmark")
             blackImageCheckImage.image = UIImage(named: "checkmark")
-            
         }
 		
 		switch getCurrentAppIcon() {

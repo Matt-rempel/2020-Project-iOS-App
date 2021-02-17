@@ -21,9 +21,7 @@ class DBAccessor {
         let baseURL = "https://www.the2020project.ca/api/v2/"
 //    #endif
     
-    
-    
-    //	MARK: Devotion end points
+    // MARK: Devotion end points
     /**
      Get a specific devotion
      - Parameters:
@@ -32,9 +30,9 @@ class DBAccessor {
      - day: Day of the devotion
      - Returns: The devotion
      */
-    func getDevotion(year: Int, month: Int, day: Int, completion: @escaping (Devotion?, Error?) throws -> ()) {
+    func getDevotion(year: Int, month: Int, day: Int, completion: @escaping (Devotion?, Error?) throws -> Void) {
         let url = "\(baseURL)devotionals/\(year)/\(month)/\(day)/"
-        var devotion:Devotion?
+        var devotion: Devotion?
 
         AF.request(url, method: .get, encoding: JSONEncoding.default).responseJSON { response in
             switch response.result {
@@ -65,8 +63,7 @@ class DBAccessor {
         }
     }
 
-    
-    //    MARK: Devotion end points
+    // MARK: Devotion end points
     /**
      Get months devotionals
      - Parameters:
@@ -75,9 +72,9 @@ class DBAccessor {
      - day: Day of the devotional
      - Returns: The devotions in an array
      */
-    func getWidget(completion: @escaping (Devotion?, Error?) throws -> ()) {
+    func getWidget(completion: @escaping (Devotion?, Error?) throws -> Void) {
         let url = "\(baseURL)devotionals/widget/"
-        var devotion:Devotion?
+        var devotion: Devotion?
         
         AF.request(url, method: .get, encoding: JSONEncoding.default).responseJSON { response in
             switch response.result {

@@ -12,5 +12,5 @@ import UIKit
 class UnsplashCache {
     // Will store downloaded unplash photos
     // Patter: unplash_id : UIImage
-    static var photos:[String: UIImage] = [:]
+    static var photos: [String: UIImage] = [:]
 }

@@ -22,8 +22,7 @@ struct NetworkImage: View {
 	   Image(uiImage: uiImage)
 		 .resizable()
 		 .aspectRatio(contentMode: .fill)
-	  }
-	  else {
+	  } else {
 	   Image("placeholder-image")
 	  }
 	}

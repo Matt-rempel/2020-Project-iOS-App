@@ -12,24 +12,23 @@ import UIKit
 class CirclePieBuilder {
     // MARK: - Cell Progress Circle
     func setUpProgressCircle( for progressCircle: CirclePieView, checkMarkImageView: UIImageView, devotion: Devotion, scManager: ScriptureManager) {
-        
-        var totalScriptures:Double = 0
-        var completedScriptures:Double = 0
-        
+
+        var totalScriptures: Double = 0
+        var completedScriptures: Double = 0
+
         scManager.getScriptureProgress(devotion: devotion) { (error) in
             if let error = error {
-                // TODO: handle error
                 print(error)
             }
             for scripture in devotion.scriptue {
                 totalScriptures += 1
                 completedScriptures += scripture.isCompleted ? 1 : 0
             }
-            
-            let progress:Double = completedScriptures / totalScriptures
-            
+
+            let progress: Double = completedScriptures / totalScriptures
+
             progressCircle.backgroundColor = UIColor.clear
-            
+
             if progress == 0.0 {
                 progressCircle.backgroundColor = UIColor.clear
             } else if #available(iOS 13.0, *) {
@@ -37,7 +36,7 @@ class CirclePieBuilder {
             } else {
                 progressCircle.backgroundColor = Colors.fadedColor
             }
-            
+
             if progress > 0.95 {
                 if #available(iOS 13.0, *) {
                     checkMarkImageView.image = UIImage(systemName: "checkmark.circle.fill")
@@ -54,7 +53,6 @@ class CirclePieBuilder {
             progressCircle.pieFilling = CGFloat(progress)
             progressCircle.setNeedsDisplay()
         }
-        
-        
+
     }
 }

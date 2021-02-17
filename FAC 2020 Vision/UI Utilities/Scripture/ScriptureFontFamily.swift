@@ -9,9 +9,9 @@
 import Foundation
 
 enum ScriptureFontFamily: String {
-    case times = "times"
-    case arial = "arial"
-    case helvetica = "helvetica"
-    case georgia = "georgia"
-    case avenir = "avenir"
+    case times
+    case arial
+    case helvetica
+    case georgia
+    case avenir
 }

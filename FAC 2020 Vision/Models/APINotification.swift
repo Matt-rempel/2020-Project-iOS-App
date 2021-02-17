@@ -20,7 +20,7 @@ struct APINotification {
     var platform: String
     var appVersion: String
 
-    internal init(json:JSON) {
+    internal init(json: JSON) {
         
         id = json["id"].int ?? 0
         title = json["title"].string ?? ""
@@ -35,6 +35,4 @@ struct APINotification {
         }
     }
     
-    
 }
-

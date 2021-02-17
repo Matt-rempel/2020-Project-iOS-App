@@ -21,10 +21,10 @@ class UnsplashDownloader {
         - unsplash_id: String of unsplash image ID
     - Returns: The devotions in an array
     */
-    func getImage(unsplash_id: String, indexPath: IndexPath? = nil, completion: @escaping (UIImage?, IndexPath?, Error?) throws -> ()) {
-        let url = self.getUnsplashURLWith(imageID: unsplash_id)
+    func getImage(unsplashId: String, indexPath: IndexPath? = nil, completion: @escaping (UIImage?, IndexPath?, Error?) throws -> Void) {
+        let url = self.getUnsplashURLWith(imageID: unsplashId)
         
-        if let image = UnsplashCache.photos[unsplash_id] {
+        if let image = UnsplashCache.photos[unsplashId] {
             do {
                 try completion(image, indexPath, nil)
             } catch {
@@ -35,13 +35,13 @@ class UnsplashDownloader {
         AF.request(url, method: .get).response { response in
             do {
                 switch response.result {
-                    case .success(let responseData):
-                        let image = UIImage(data: responseData!)
-                        UnsplashCache.photos[unsplash_id] = image
-                        try completion(image, indexPath, nil)
-                    case .failure(let error):
-                        print("error--->",error)
-                        try completion(self.defaultImage, indexPath, error)
+                case .success(let responseData):
+                    let image = UIImage(data: responseData!)
+                    UnsplashCache.photos[unsplashId] = image
+                    try completion(image, indexPath, nil)
+                case .failure(let error):
+                    print("error--->", error)
+                    try completion(self.defaultImage, indexPath, error)
                 }
                 
             } catch {
@@ -50,7 +50,6 @@ class UnsplashDownloader {
         }
     }
 
-    
     private func getUnsplashURLWith(imageID: String?) -> URL {
         if let imageID = imageID {
             return URL(string: "https://source.unsplash.com/" + imageID + "/" + resolution)!

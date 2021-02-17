@@ -10,8 +10,7 @@ import UIKit
 
 class BookmarksTableView: UITableViewController {
 
-	
-    var devotions:[Devotion] = []
+    var devotions: [Devotion] = []
 	
     let dateFormater = DateFormater()
     let dbAccessor = DBAccessor()
@@ -21,7 +20,6 @@ class BookmarksTableView: UITableViewController {
     
     // Navigation bar
     let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,29 +41,22 @@ class BookmarksTableView: UITableViewController {
         // Get the bookmarks
         loadBookmarks()
         
-
 	}
     
     func loadBookmarks() {
         setLoading(true)
         bookmarkManager.getBookmarks { (devotions, error) in
-            print(error)
-            // TODO: Handle error
+            print(error?.localizedDescription as Any)
             self.devotions = devotions ?? []
             self.devotions.sort(by: { $0.date < $1.date })
             self.tableView.reloadData()
             self.setLoading(false)
         }
-        
-        
     }
     
-    
-
     func loadNewBookmarksFormat() {
         
     }
-    
     
     // MARK: - TableView
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -97,7 +88,9 @@ class BookmarksTableView: UITableViewController {
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let devotionalDetailView = storyBoard.instantiateViewController(withIdentifier: "DevotionalDetailView") as! DevotionalDetailView
+        guard let devotionalDetailView = storyBoard.instantiateViewController(withIdentifier: "DevotionalDetailView") as? DevotionalDetailView else {
+            return
+        }
         devotionalDetailView.devotion = selectedDevotional
         
         let navController = UINavigationController()
@@ -119,7 +112,6 @@ class BookmarksTableView: UITableViewController {
         
         activityIndicator.isHidden = !isLoading
     }
-    
     
 	// MARK: - IBActions
 	@IBAction func donePressed(_ sender: Any) {

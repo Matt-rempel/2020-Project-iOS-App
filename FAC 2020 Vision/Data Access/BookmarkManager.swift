@@ -15,10 +15,10 @@ class BookmarkManager: DBAccessor {
     let authManager = AuthenticationManager()
     let udManager = UserDefaultsManager()
     let dateFormater = DateFormater()
-    var bookmarkUDIDs:[String : [String]] = [:]
+    var bookmarkUDIDs: [String: [String]] = [:]
     
     // MARK: - Set a scripture as read
-    func toggleBookmark(devotion: Devotion, completion: @escaping (Error?) throws -> ()) {
+    func toggleBookmark(devotion: Devotion, completion: @escaping (Error?) throws -> Void) {
         if let key = authManager.key {
             self.toggleBookmarkAPI(devotion: devotion, key: key) { (error) in
                 do {
@@ -41,14 +41,14 @@ class BookmarkManager: DBAccessor {
         }
     }
     
-    func toggleBookmarkAPI(devotion: Devotion, key: String, completion: @escaping (Error?) throws -> ()) {
+    func toggleBookmarkAPI(devotion: Devotion, key: String, completion: @escaping (Error?) throws -> Void) {
         let calendar = Calendar.current
         let year = calendar.component(.year, from: devotion.date)
         let month = calendar.component(.month, from: devotion.date)
         let day = calendar.component(.day, from: devotion.date)
         
         let url = "\(baseURL)devotionals/\(year)/\(month)/\(day)/favourite/"
-        let headers:HTTPHeaders = ["Authorization": "Token \(key)"]
+        let headers: HTTPHeaders = ["Authorization": "Token \(key)"]
         
         AF.request(url, method: .post, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             print(response)
@@ -65,15 +65,14 @@ class BookmarkManager: DBAccessor {
             }
         }
     }
-    
-    
-    func toggleBookmarkAPI(year: Int, month: Int, day: Int, completion: @escaping (Error?) throws -> ()) {
+
+    func toggleBookmarkAPI(year: Int, month: Int, day: Int, completion: @escaping (Error?) throws -> Void) {
         let url = "\(baseURL)devotionals/\(year)/\(month)/\(day)/favourite/"
         guard let key = authManager.key else {
             // TODO: Handle error
             return
         }
-        let headers:HTTPHeaders = ["Authorization": "Token \(key)"]
+        let headers: HTTPHeaders = ["Authorization": "Token \(key)"]
         
         AF.request(url, method: .post, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             print(response)
@@ -90,12 +89,11 @@ class BookmarkManager: DBAccessor {
             }
         }
     }
-    
-    
+
     // MARK: Get bookmarks
-    func getBookmarks(completion: @escaping ([Devotion]?, Error?) throws -> ()) {
+    func getBookmarks(completion: @escaping ([Devotion]?, Error?) throws -> Void) {
         if let key = authManager.key {
-            self.getAPIBookmarks(key: key) { (devotions, error) in
+            self.getAPIBookmarks(key: key) { (devotions, _) in
                 do {
                     try completion(devotions, nil)
                 } catch {
@@ -103,7 +101,7 @@ class BookmarkManager: DBAccessor {
                 }
             }
         } else {
-            self.loadLocalBookmarks { (devotions, error) in
+            self.loadLocalBookmarks { (devotions, _) in
                 do {
                     try completion(devotions, nil)
                 } catch {
@@ -114,11 +112,11 @@ class BookmarkManager: DBAccessor {
         }
     }
     
-    private func getAPIBookmarks(key: String, completion: @escaping ([Devotion]?, Error?) throws -> ()) {
+    private func getAPIBookmarks(key: String, completion: @escaping ([Devotion]?, Error?) throws -> Void) {
         let url = "\(baseURL)favourites/devotionals/"
-        let headers:HTTPHeaders = ["Authorization": "Token \(key)"]
+        let headers: HTTPHeaders = ["Authorization": "Token \(key)"]
         
-        var devotions:[Devotion] = []
+        var devotions: [Devotion] = []
         
         AF.request(url, method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             print(response)
@@ -131,7 +129,7 @@ class BookmarkManager: DBAccessor {
                     }
                     
                     let json = try JSON(data: data)
-                    json.forEach { (key, value) in devotions.append(Devotion(json: value)) }
+                    json.forEach { (_, value) in devotions.append(Devotion(json: value)) }
                     
                     try completion(devotions, nil)
                 } catch {
@@ -148,7 +146,7 @@ class BookmarkManager: DBAccessor {
         }
     }
     
-    private func loadLocalBookmarks(completion: @escaping ([Devotion]?, Error?) throws -> ()) {
+    private func loadLocalBookmarks(completion: @escaping ([Devotion]?, Error?) throws -> Void) {
         
         // Get the saved UDID's
         if bookmarkUDIDs == udManager.getSavedBookmarks() {
@@ -158,11 +156,11 @@ class BookmarkManager: DBAccessor {
         bookmarkUDIDs = udManager.getSavedBookmarks()
         
         let taskGroup = DispatchGroup()
-        var devotions:[Devotion] = []
+        var devotions: [Devotion] = []
         
-        for (_, DevoDates) in bookmarkUDIDs {
+        for (_, devoDates) in bookmarkUDIDs {
             // Load the devo from the API
-            for date in Array(Set(DevoDates)) {
+            for date in Array(Set(devoDates)) {
                 taskGroup.enter()
                 // date is in the format dd-MM-yyyy
                 let (year, month, day) = dateFormater.devoDateToParts(devoDate: date)
@@ -195,9 +193,8 @@ class BookmarkManager: DBAccessor {
         
     }
     
-    
     // MARK: - Check if devotion is bookmarked
-    func isBookmarked(devotion: Devotion, completion: @escaping (Bool, Error?) throws -> ()) {
+    func isBookmarked(devotion: Devotion, completion: @escaping (Bool, Error?) throws -> Void) {
         if let key = authManager.key {
             self.isDevotionBookmarked(devotion: devotion, key: key) { (isBookmarked, error) in
                 do {
@@ -218,14 +215,14 @@ class BookmarkManager: DBAccessor {
     
     }
     
-    func isDevotionBookmarked(devotion: Devotion, key: String, completion: @escaping (Bool, Error?) throws -> ()) {
+    func isDevotionBookmarked(devotion: Devotion, key: String, completion: @escaping (Bool, Error?) throws -> Void) {
         let calendar = Calendar.current
         let year = calendar.component(.year, from: devotion.date)
         let month = calendar.component(.month, from: devotion.date)
         let day = calendar.component(.day, from: devotion.date)
         
         let url = "\(baseURL)devotionals/\(year)/\(month)/\(day)/favourite/"
-        let headers:HTTPHeaders = ["Authorization": "Token \(key)"]
+        let headers: HTTPHeaders = ["Authorization": "Token \(key)"]
         
         var isBookmarked = false
         

@@ -13,7 +13,7 @@ struct Translation {
     var reading: String
     var copyright: String
     
-    internal init(json: [String : String]) {
+    internal init(json: [String: String]) {
         translation = json["translation"] ?? ""
         reading = json["reading"] ?? ""
         copyright = json["copyright"] ?? ""

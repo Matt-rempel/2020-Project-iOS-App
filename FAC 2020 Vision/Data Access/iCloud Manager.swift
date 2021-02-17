@@ -8,7 +8,7 @@
 
 import Foundation
 
-class iCloudManager {
+class IcloudManager {
     
     var dateFormater = DateFormater()
     
@@ -28,14 +28,14 @@ class iCloudManager {
     
     func setiCloudProgress( for devotion: Devotion, scripture: Scripture) {
         let devoDate = dateFormater.getStringFrom(date: devotion.date)
-        var iCloudCompletion:[String:Bool] = [:]
+        var icloudCompletion: [String: Bool] = [:]
         
-        if let icc = NSUbiquitousKeyValueStore.default.dictionary(forKey: devoDate) as? [String : Bool] {
-            iCloudCompletion = icc
+        if let icc = NSUbiquitousKeyValueStore.default.dictionary(forKey: devoDate) as? [String: Bool] {
+            icloudCompletion = icc
         }
         
-        iCloudCompletion[scripture.title] = true
-        NSUbiquitousKeyValueStore.default.set(iCloudCompletion, forKey: devoDate)
+        icloudCompletion[scripture.title] = true
+        NSUbiquitousKeyValueStore.default.set(icloudCompletion, forKey: devoDate)
 
     }
     

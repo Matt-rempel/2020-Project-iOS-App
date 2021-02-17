@@ -24,8 +24,7 @@ class LargeCollectionViewCell: UICollectionViewCell {
 	   super.awakeFromNib()
 	   // Initialization code
    }
-    
-	
+
 	// Image Alpha Gradient
 	func addGradient() {
 		let mask = CAGradientLayer()
@@ -33,13 +32,12 @@ class LargeCollectionViewCell: UICollectionViewCell {
 		mask.endPoint = CGPoint(x: 0.5, y: 0.0)
 		
 		let blackColor = UIColor.black
-		
-		
+
 		mask.colors = [blackColor.withAlphaComponent(0.0).cgColor,
 					   blackColor.withAlphaComponent(1.0),
 					   blackColor.withAlphaComponent(1.0).cgColor]
 		
-		mask.locations = [NSNumber(value: 0.0),NSNumber(value: 0.2),NSNumber(value: 1.0)]
+		mask.locations = [NSNumber(value: 0.0), NSNumber(value: 0.2), NSNumber(value: 1.0)]
 		mask.frame = gradientView.bounds
 		
 		gradientView.layer.mask = mask
@@ -47,7 +45,6 @@ class LargeCollectionViewCell: UICollectionViewCell {
 		gradientView.layer.cornerRadius = 15.0
 	}
 	
-    
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {

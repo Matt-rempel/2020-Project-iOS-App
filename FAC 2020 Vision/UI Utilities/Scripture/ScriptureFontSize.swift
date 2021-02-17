@@ -9,10 +9,10 @@
 import Foundation
 
 enum ScriptureFontSize: String {
-    case extraSmall = "extraSmall"
-    case small = "small"
-    case medium = "medium"
-    case large = "large"
-    case extraLarge = "extraLarge"
-    case boomer = "boomer"
+    case extraSmall
+    case small
+    case medium
+    case large
+    case extraLarge
+    case boomer
 }

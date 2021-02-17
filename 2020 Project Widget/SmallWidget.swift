@@ -9,15 +9,13 @@
 import SwiftUI
 
 struct SmallWidget: View {
-	var devotion:Devotion
-	
-//	let url = URL(string: self.snippet.unsplash_url)!
-//	self.snippet.unsplash_url
+	var devotion: Devotion
+
 	var body: some View {
-		
+
 		ZStack {
 
-			NetworkImage(url: URL(string: "https://source.unsplash.com/\(self.devotion.unsplash_id)/600x600")!)
+			NetworkImage(url: URL(string: "https://source.unsplash.com/\(self.devotion.unsplashId)/600x600")!)
 				.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
 				.background(Color(UIColor.black))
 				.brightness(-0.1)
@@ -67,7 +65,6 @@ struct SmallWidget: View {
 struct SmallWidget_Previews: PreviewProvider {
     static var previews: some View {
 		let devotion = Devotion()
-		
         SmallWidget(devotion: devotion)
     }
 }

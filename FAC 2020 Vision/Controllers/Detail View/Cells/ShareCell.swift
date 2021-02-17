@@ -12,7 +12,7 @@ class ShareCell: UITableViewCell {
 
 	@IBOutlet weak var shareButton: ShareButton!
 	
-	var delegate:DevotionalDetailView?
+	weak var delegate: DevotionalDetailView?
 	var sharingURL = ""
 	
 	override func awakeFromNib() {
@@ -29,13 +29,13 @@ class ShareCell: UITableViewCell {
 	@IBAction func sharePressed(_ sender: Any) {
 		if let delegate = delegate {
 			let items = [URL(string: sharingURL)!]
-			let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+			let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
 			
-			if let popOver = ac.popoverPresentationController {
+			if let popOver = activityVC.popoverPresentationController {
 				popOver.sourceView = shareButton
 			}
 			
-			delegate.present(ac, animated: true)
+			delegate.present(activityVC, animated: true)
 		}
 	}
 	

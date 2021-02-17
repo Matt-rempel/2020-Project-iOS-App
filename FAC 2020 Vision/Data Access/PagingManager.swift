@@ -65,15 +65,14 @@ class PagingManager: DBAccessor {
         self.pagingViewType = pagingViewType
     }
 
-	
 	/**
 	Get the next 10 devotions. It will also set the next, prev, and count variable in the class
 	- Returns: The next 10 devotions in an array
 	*/
-	func nextPage(completion: @escaping ([Devotion]?, Error?) throws -> ()) {
+	func nextPage(completion: @escaping ([Devotion]?, Error?) throws -> Void) {
 
         if let url = next {
-            var devotions:[Devotion] = []
+            var devotions: [Devotion] = []
             
             AF.request(url, method: .get, encoding: JSONEncoding.default).responseJSON { response in
                 switch response.result {
@@ -89,7 +88,7 @@ class PagingManager: DBAccessor {
                         self.prev = json["prev"].string
                         self.count = json["count"].int
                         let results = json["results"]
-                        results.forEach { (key, value) in devotions.append(Devotion(json: value)) }
+                        results.forEach { (_, value) in devotions.append(Devotion(json: value)) }
                         
                         try completion(devotions, nil)
                     } catch {
@@ -114,10 +113,10 @@ class PagingManager: DBAccessor {
         - searchTerm: The string to search for
     - Returns: The devotions in an array
     */
-    func search(searchTerm: String, completion: @escaping ([Devotion]?, Error?) throws -> ()) {
+    func search(searchTerm: String, completion: @escaping ([Devotion]?, Error?) throws -> Void) {
         let url = "\(baseURL)devotionals/"
         let parameters = ["search": searchTerm]
-        var devotions:[Devotion] = []
+        var devotions: [Devotion] = []
         
         AF.request(url, method: .get, parameters: parameters).responseJSON { response in
             switch response.result {
@@ -133,7 +132,7 @@ class PagingManager: DBAccessor {
                     self.prev = json["prev"].string
                     self.count = json["count"].int
                     let results = json["results"]
-                    results.forEach { (key, value) in devotions.append(Devotion(json: value)) }
+                    results.forEach { (_, value) in devotions.append(Devotion(json: value)) }
                     
                     try completion(devotions, nil)
                 } catch {
@@ -157,10 +156,10 @@ class PagingManager: DBAccessor {
      - month: Month of the devotions
      - Returns: The devotion in an array
      */
-    func getMonthsDevotions(year: Int, month: Int, order : DevotionOrderType = .ascending, completion: @escaping ([Devotion]?, Error?) throws -> ()) {
+    func getMonthsDevotions(year: Int, month: Int, order: DevotionOrderType = .ascending, completion: @escaping ([Devotion]?, Error?) throws -> Void) {
         let url = "\(baseURL)devotionals/"
-        let parameters:[String : Any] = ["date_year": year, "date_month": month, "ordering": order.rawValue]
-        var devotions:[Devotion] = []
+        let parameters: [String: Any] = ["date_year": year, "date_month": month, "ordering": order.rawValue]
+        var devotions: [Devotion] = []
         
         AF.request(url, method: .get, parameters: parameters).responseJSON { response in
             switch response.result {
@@ -176,7 +175,7 @@ class PagingManager: DBAccessor {
                     self.prev = json["prev"].string
                     self.count = json["count"].int
                     let results = json["results"]
-                    results.forEach { (key, value) in devotions.append(Devotion(json: value)) }
+                    results.forEach { (_, value) in devotions.append(Devotion(json: value)) }
                     
                     try completion(devotions, nil)
                 } catch {
@@ -196,6 +195,5 @@ class PagingManager: DBAccessor {
             }
         }
     }
-	
 	
 }

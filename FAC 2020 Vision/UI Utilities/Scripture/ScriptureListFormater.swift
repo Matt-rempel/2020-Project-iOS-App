@@ -12,7 +12,7 @@ import Foundation
  This class is responsible for taking a list of scriptures and returning a formated string of the scripture
  */
 class ScriptureListFormater {
-    
+
     let booksToAbv = [
         "1 Chronicles": "1 Chron.",
         "1 Corinthians": "1 Cor.",
@@ -80,42 +80,39 @@ class ScriptureListFormater {
         "Song of Songs": "Song.",
         "Titus": "Titus",
         "Zechariah": "Zech.",
-        "Zephaniah": "Zeph.",
-        
+        "Zephaniah": "Zeph."
     ]
-    
+
     func getFormatedTitle(title: String) -> String {
         var output = ""
-        
+
         if title != "" {
-            let numOfSpaces = title.components(separatedBy:" ").count-1
-                        
+            let numOfSpaces = title.components(separatedBy: " ").count-1
             var bookName = ""
             var formatedBookName = ""
-            
             if title.contains("Song of Songs") {
                 let components = title.components(separatedBy: " ")
                 bookName = components[0] + " " + components[1] + " " + components[2]
                 formatedBookName = booksToAbv[bookName] ?? ""
-                
+
                 output = "\(formatedBookName) \(components[3])"
             } else if numOfSpaces == 2 {
                 let components = title.components(separatedBy: " ")
                 bookName = components[0] + " " + components[1]
                 formatedBookName = booksToAbv[bookName] ?? ""
-                
+
                 output = "\(formatedBookName) \(components[2])"
             } else {
                 let components = title.components(separatedBy: " ")
                 bookName = components[0]
                 formatedBookName = booksToAbv[bookName] ?? ""
-                
+
                 output = "\(formatedBookName) \(components[1])"
             }
         } else {
             output = ""
         }
-        
+
         return output
     }
 }
